@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    
+
+    <!-- Bootstrap -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>WhiteBored</title>
+    <meta name="description" content="WhiteBoard - A collaborative drawing app in real-time that uses web sockets">
+    <meta name="keywords" content="WhiteBoard Drawing app">
+
+
+</head>
+
+<body id="notion-body">
+    <div class="container">
+        <div class="row top" id="user-id">
+            <!-- <h1 id="header">whitebored</h1> -->
+            <img src="whitebored.png" alt="Whitebored" id="logo">
+          
+        </div>
+   
+        <div class="row" id="toolbar">
+            <div class="col">
+                <p id="welcome-message">Welcome, <%= Qs.username%>.</p>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <span id="side" class="user-tools">
+
+                    <div class="dropdown" id="drop-active">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Active Users <span id="room-name">()</span> <span id="n">()</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="active-users">
+                        
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-outline-danger user-tools " id="leave-room"><a href="/" class="link" id="leave-mess">Leave Room</a></button>
+                </span>
+
+                
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <canvas id="c"
+                    style="border: 1px solid rgb(170, 170, 170); position: absolute; width: 200px; height: 200px; left: 0px; top: 0px; touch-action: none; user-select: none;"
+                    class="lower-canvas"></canvas>
+        </div>
+        <div class="row tools">
+            <div class="col d-flex justify-content-center">
+                <button id="drawing-mode" class="btn btn-outline-dark btn-tool" title="Toggle select or pen"><i class="far fa-object-ungroup" id="tool-select"></i></button>
+                <button class="btn btn-outline-dark btn-tool" id="clear" title="Clear whiteboard"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-outline-dark btn-tool" onclick="deleteObject()" title="Toggle eraser" id="eraser-btn"><i class="fas fa-eraser"></i></button>
+                <span id="clr">
+                    <!-- <label for="drawing-color">Brush color:</label> -->
+                    <input type="color" value="#000000" id="drawing-color" class="clrpicker">
+                </span>
+                <span class="info" id="brushthickness">1 </span><input type="range" value="0" min="1" max="35" id="drop">
+            </div>        
+        </div>
+        
+    
+    </div>
+    
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js"
+    integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.2.0/fabric.min.js"
+    integrity="sha512-Pdu3zoEng2TLwwjnDne3O7zaeWZfEJHU5B63T+zLtME/wg1zfeSH/1wrtOzOC37u2Y1Ki8pTCdKsnbueOlFlMg=="
+    crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./main.js"></script>
+
+</html>
